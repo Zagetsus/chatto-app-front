@@ -1,11 +1,15 @@
 import React from 'react';
+import {BrowserRouter} from 'react-router-dom';
+import GlobalStyles from "./styles/GlobalStyles";
+import RoutesChatto from "./routes";
 
 function App() {
-  return (
-    <div>
-      <h1>Amigos da API</h1>
-    </div>
-  );
+    return (
+        <BrowserRouter>
+            <GlobalStyles/>
+            <RoutesChatto />
+        </BrowserRouter>
+    );
 }
 
 export default App;
