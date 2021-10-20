@@ -28,7 +28,7 @@ const Welcome: React.FC = () => {
             </TitleGroup>
 
             <ButtonGroup>
-                <Button outline expand>Criar conta</Button>
+                <Button onClick={() => navigate('/cadastro')} outline expand>Criar conta</Button>
                 <Button onClick={() => navigate('/login')} expand>Entrar</Button>
                 <ForgotPassword to={''}>Esqueci minha senha</ForgotPassword>
             </ButtonGroup>

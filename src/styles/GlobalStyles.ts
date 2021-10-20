@@ -54,12 +54,23 @@ export default createGlobalStyle`
     --montserrat: 'Montserrat';
     --roboto: 'Roboto';
 
-    --blue: #2D9CDB;
     --primary: #00A7B1;
     
     --grey-dark: #090909;
     --grey: #5F5F5F;
     --grey-light: #E6E8EF;
+    
+    --success: #287D3C;
+    --success-light: #EDF9F0;
+    
+    --warning: #B95000;
+    --warning-light: #FFF4EC;
+    
+    --error: #DA1414;
+    --error-light: #FEEFEF;
+    
+    --info: #2E5AAC;
+    --info-light: #EEF2FA;
     
     --white: #FFF;
     --black: #000;
