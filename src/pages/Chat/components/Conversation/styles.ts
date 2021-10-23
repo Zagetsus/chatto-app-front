@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {Modal} from "@mui/material";
 let intFrameHeight = window.innerHeight;
 
 export const Container = styled.div`
@@ -11,13 +12,18 @@ export const Container = styled.div`
 `;
 
 export const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  
   max-width: var(--container);
   width: 100%;
+  height: calc(100% - 350px);
   margin: 12px auto;
   flex: 1;
 `;
 
 export const ChatHeader = styled.div`
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -68,6 +74,10 @@ export const HeaderButton = styled.button`
 export const MessageContainer = styled.div`
   width: 100%;
   overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export const AreaInputMessage = styled.div`
@@ -88,4 +98,9 @@ export const InputMessage = styled.input`
   padding: 10px;
   box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.15);
   border-radius: 16px;
+`;
+
+
+export const ModalProfile = styled(Modal)`
+
 `;

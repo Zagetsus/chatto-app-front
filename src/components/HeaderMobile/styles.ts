@@ -5,7 +5,7 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  height: 50px;
+  min-height: 50px;
   background: #FFFFFF;
   box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.05), inset 0px 2px 2px rgba(0, 0, 0, 0.01);
 `;
