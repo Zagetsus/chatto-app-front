@@ -10,6 +10,11 @@ export const Container = styled.div`
 export const Content = styled.div`
   max-width: var(--container);
   margin: 0 auto;
+  
+  @media(min-width: 1279px){
+    max-width: 100%;
+    padding: 37px 40px;
+  }
 `;
 
 export const Title = styled.h1`

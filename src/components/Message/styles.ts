@@ -25,6 +25,10 @@ export const Bubble = styled.div<Props>`
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
   border-radius: ${({owner}) => owner ? "24px 24px 0px 24px" : "24px 24px 24px 0px"};
 
+  @media(min-width: 1279px){
+    padding: 17px 42px 11px 37px;
+    max-width: 532px;
+  }
 `;
 
 export const BubbleText = styled.p<Props>`

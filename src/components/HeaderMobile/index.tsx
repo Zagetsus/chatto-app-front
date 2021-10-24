@@ -3,7 +3,7 @@ import {Container, Content, Logo} from "./styles";
 import ArrowBackIosOutlinedIcon from '@mui/icons-material/ArrowBackIosOutlined';
 
 interface Props {
-    close: () => void;
+    close?: () => void;
 }
 
 const HeaderMobile: React.FC<Props> = ({ close }) => {

@@ -20,6 +20,19 @@ export const Content = styled.div`
   height: calc(100% - 350px);
   margin: 12px auto;
   flex: 1;
+  
+  @media(min-width: 1279px){
+    min-width: 100%;
+    padding: 0 30px;
+  }
+`;
+
+export const HeaderPage = styled.div`
+  width: 100%;
+  
+  @media(min-width: 1279px){
+    display: none;
+  }
 `;
 
 export const ChatHeader = styled.div`
@@ -28,6 +41,13 @@ export const ChatHeader = styled.div`
   align-items: center;
   justify-content: space-between;
   margin-bottom: 16px;
+  
+  @media(min-width: 1279px){
+    padding: 2.89px 71.29px 2.89px 5.79px ;
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.05), inset 1px 2px 2px rgba(0, 0, 0, 0.01);
+    border-radius: 4px;
+    margin-bottom: 58px;
+  }
 `;
 
 export const HeaderName = styled.h3`
@@ -57,6 +77,11 @@ export const Avatar = styled.div`
   border-radius: 50%;
   background: #E9E9E9;
   margin-right: 12px;
+  
+  @media(min-width: 1279px){
+    width: 75.21px;
+    height: 75.21px;
+  }
 `;
 
 export const HeaderButton = styled.button`

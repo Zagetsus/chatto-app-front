@@ -7,7 +7,7 @@ import {
     Content,
     FlexCenter,
     HeaderButton,
-    HeaderName,
+    HeaderName, HeaderPage,
     HeaderStatus, InputMessage,
     MessageContainer, ModalProfile
 } from "./styles";
@@ -19,7 +19,7 @@ import {Slide} from "@mui/material";
 import FriendProfile from "../FriendProfile";
 
 interface Props {
-    close: () => void;
+    close?: () => void;
 }
 
 const Conversation: React.FC<Props> = ({close}) => {
@@ -34,7 +34,9 @@ const Conversation: React.FC<Props> = ({close}) => {
 
     return (
         <Container>
-            <HeaderMobile close={close}/>
+            <HeaderPage>
+                <HeaderMobile close={close}/>
+            </HeaderPage>
             <Content>
                 <ChatHeader>
                     <FlexCenter>
