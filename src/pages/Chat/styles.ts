@@ -18,7 +18,9 @@ export const MenuContainer = styled.div`
 
 export const MessageContainer = styled.div`
   flex: 1;
+  @media (max-width: 1280px) {
+    display: none;
+  }
 `;
 
-export const Wrapper = styled.div`
-`;
+export const Wrapper = styled.div``;
