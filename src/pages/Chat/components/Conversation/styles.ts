@@ -1,12 +1,10 @@
 import styled from "styled-components";
-import {Modal} from "@mui/material";
+import { Modal } from "@mui/material";
 let intFrameHeight = window.innerHeight;
 
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  
-  background: var(--white);
   height: ${intFrameHeight + "px"};
   top: 0;
 `;
@@ -14,14 +12,14 @@ export const Container = styled.div`
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
-  
+
   max-width: var(--container);
   width: 100%;
   height: calc(100% - 350px);
   margin: 12px auto;
   flex: 1;
-  
-  @media(min-width: 1279px){
+
+  @media (min-width: 1279px) {
     min-width: 100%;
     padding: 0 30px;
   }
@@ -29,8 +27,8 @@ export const Content = styled.div`
 
 export const HeaderPage = styled.div`
   width: 100%;
-  
-  @media(min-width: 1279px){
+
+  @media (min-width: 1279px) {
     display: none;
   }
 `;
@@ -41,10 +39,11 @@ export const ChatHeader = styled.div`
   align-items: center;
   justify-content: space-between;
   margin-bottom: 16px;
-  
-  @media(min-width: 1279px){
-    padding: 2.89px 71.29px 2.89px 5.79px ;
-    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.05), inset 1px 2px 2px rgba(0, 0, 0, 0.01);
+
+  @media (min-width: 1279px) {
+    padding: 2.89px 71.29px 2.89px 5.79px;
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.05),
+      inset 1px 2px 2px rgba(0, 0, 0, 0.01);
     border-radius: 4px;
     margin-bottom: 58px;
   }
@@ -54,7 +53,7 @@ export const HeaderName = styled.h3`
   font-weight: 800;
   font-size: 14px;
   line-height: 20px;
-  color: #09101D;
+  color: #09101d;
   opacity: 0.8;
 `;
 
@@ -62,7 +61,7 @@ export const HeaderStatus = styled.p`
   font-weight: 600;
   font-size: 12px;
   line-height: 20px;
-  color: #09101D;
+  color: #09101d;
   opacity: 0.8;
 `;
 
@@ -75,10 +74,10 @@ export const Avatar = styled.div`
   width: 52px;
   height: 52px;
   border-radius: 50%;
-  background: #E9E9E9;
+  background: #e9e9e9;
   margin-right: 12px;
-  
-  @media(min-width: 1279px){
+
+  @media (min-width: 1279px) {
     width: 75.21px;
     height: 75.21px;
   }
@@ -91,8 +90,8 @@ export const HeaderButton = styled.button`
   font-weight: 600;
   font-size: 10px;
   line-height: 20px;
-  
-  color: #09101D;
+
+  color: #09101d;
   opacity: 0.8;
 `;
 
@@ -108,11 +107,12 @@ export const MessageContainer = styled.div`
 export const AreaInputMessage = styled.div`
   width: 100%;
   height: 88px;
-  background: #F4F4F4;
-  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.05), inset 1px 2px 2px rgba(0, 0, 0, 0.1);
+  background: #f4f4f4;
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.05),
+    inset 1px 2px 2px rgba(0, 0, 0, 0.1);
   border-radius: 16px 16px 0 0;
   padding: 21px 12px 26px 19px;
-`
+`;
 
 export const InputMessage = styled.input`
   width: 265px;
@@ -125,7 +125,4 @@ export const InputMessage = styled.input`
   border-radius: 16px;
 `;
 
-
-export const ModalProfile = styled(Modal)`
-
-`;
+export const ModalProfile = styled(Modal)``;
