@@ -7,6 +7,9 @@ export const Container = styled.div`
   flex-direction: column;
   height: ${intFrameHeight + "px"};
   top: 0;
+  @media(max-width:1279px){
+    background-color:white;
+  }
 `;
 
 export const Content = styled.div`
