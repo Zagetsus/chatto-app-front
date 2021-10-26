@@ -13,7 +13,6 @@ import {
 } from "./styles";
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
 import HeaderMobile from "../../../../components/HeaderMobile";
-import Input from "../../../../components/Input";
 import Message from "../../../../components/Message";
 import {Slide} from "@mui/material";
 import FriendProfile from "../FriendProfile";

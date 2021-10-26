@@ -8,16 +8,37 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
     alertMessage?: string;
 }
 
-const Input: React.FC<Props> = ({label, type, typeAlert, description, alertMessage}) => {
+const Input: React.FC<Props> = (
+    {
+        value,
+        label,
+        id,
+        onChange,
+        onBlur,
+        type,
+        typeAlert,
+        description,
+        alertMessage
+    }) => {
 
     return (
         <>
-            <InputContainer size="small" typeAlert={typeAlert} id="outlined-basic" type={type} label={label} variant="outlined" />
+            <InputContainer
+                value={value}
+                onChange={onChange}
+                onBlur={onBlur}
+                size="small"
+                typeAlert={typeAlert}
+                id={id ?? "input"}
+                type={type}
+                label={label}
+                variant="outlined"
+            />
             {
                 alertMessage &&
-            <AlertBox typeAlert={typeAlert}>
-                <AlertText typeAlert={typeAlert}>{alertMessage}</AlertText>
-            </AlertBox>
+                <AlertBox typeAlert={typeAlert}>
+                    <AlertText typeAlert={typeAlert}>{alertMessage}</AlertText>
+                </AlertBox>
             }
             <MessageBox>
                 <Message>{description}</Message>

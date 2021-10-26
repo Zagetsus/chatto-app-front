@@ -3,7 +3,7 @@ import {
     ButtonModal,
     Container,
     Content,
-    Empty, MessageContainer,
+    MessageContainer,
     ModalAdd,
     ModalContent, ModalMessage,
     ModalTitle,
@@ -13,7 +13,6 @@ import {
 } from "./styles";
 import Input from "../../../../components/Input";
 import Avatar from "../../../../components/Avatar";
-import EmptyContact from "../../../../components/EmptyContact";
 import {Slide} from "@mui/material";
 import ConversationCard from "../../../../components/ConversationCard";
 import Conversation from "../Conversation";

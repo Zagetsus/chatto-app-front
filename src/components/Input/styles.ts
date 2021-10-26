@@ -56,7 +56,7 @@ export const Message = styled.div`
 export const AlertBox = styled.div<Props>`
   padding: 6px 16px;
 
-  height: 32px;
+  min-height: 32px;
   width: 100%;
 
   background: ${({typeAlert}) => typeAlert === "success" ? "var(--success-light)" : typeAlert === "error" ? "var(--error-light)" : typeAlert === "warning" ? "var(--warning-light)" : typeAlert === "info" ? "var(--info-light)" : "#e9e9e9"};
