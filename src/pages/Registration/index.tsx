@@ -20,6 +20,10 @@ import {ReactComponent as LogoExtends} from "../../assets/svg/logo-extends.svg";
 import {ReactComponent as Promotional} from "../../assets/svg/rafiki.svg";
 import useForm from "../../hooks/useForm";
 import {api} from "../../services/api";
+import {useToast} from "../../hooks/useToast";
+import {handleErrors} from "../../helpers/utils";
+import {useNavigate} from "react-router-dom";
+import {useAuth} from "../../hooks/useAuth";
 
 const Registration: React.FC = () => {
     const {form, error, onChange, setError, validateForm, onBlur} = useForm({
@@ -45,35 +49,56 @@ const Registration: React.FC = () => {
         }
     });
 
+    const {toast} = useToast();
+    const navigate = useNavigate();
+    const { signIn } = useAuth();
+
     const handleSubmit = useCallback(async (e) => {
         try {
             e.preventDefault();
 
             if (!validateForm()) {
+                toast({
+                    type: 'error',
+                    description: 'Por favor, insira corretamente os seus dados.'
+                })
                 return false;
             }
 
-            if(form.password !== form.confirmPassword) {
+            if (form.password !== form.confirmPassword) {
                 error.confirmPassword = 'As senhas precisam ser iguais';
                 setError({...error});
+
+                toast({
+                    type: 'error',
+                    description: 'Por favor, insira corretamente os seus dados.'
+                })
 
                 return false;
             }
 
             const {email, name, username, password} = form;
 
-            const { data } = await api.post('users', {
+            await api.post('users', {
                 username,
                 name,
                 email,
                 password
             });
 
-            console.log(data)
-        }catch (e) {
-            console.log(e)
+            toast({
+                type: 'success',
+                description: 'Usuário cadastrado com sucesso'
+            })
+
+            signIn({username, password})
+
+        } catch (e: any) {
+            if (e.response) {
+                setError(handleErrors(e.response.data, error));
+            }
         }
-    }, [error, form, setError, validateForm]);
+    }, [error, form, setError, signIn, toast, validateForm]);
 
     return (
         <Container>

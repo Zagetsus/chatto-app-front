@@ -16,13 +16,18 @@ import Avatar from "../../../../components/Avatar";
 import {Slide} from "@mui/material";
 import ConversationCard from "../../../../components/ConversationCard";
 import Conversation from "../Conversation";
+import useMedia from "../../../../hooks/useMedia";
 
 const Menu: React.FC = () => {
     const [open, setOpen] = useState(false)
     const [messageModal, setMessageModal] = useState(false)
+    const mobile = useMedia("(max-width: 1279px");
 
     const handleMessage = () => {
-        setMessageModal(!messageModal)
+        if(mobile) {
+            setMessageModal(!messageModal)
+        }
+        console.log("entrou")
     }
     return (
         <Container>

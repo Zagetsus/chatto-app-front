@@ -108,6 +108,9 @@ export const MessageContainer = styled.div`
 `;
 
 export const AreaInputMessage = styled.div`
+  display: flex;
+  align-items: center;
+  
   width: 100%;
   height: 88px;
   background: #f4f4f4;
@@ -115,6 +118,7 @@ export const AreaInputMessage = styled.div`
     inset 1px 2px 2px rgba(0, 0, 0, 0.1);
   border-radius: 16px 16px 0 0;
   padding: 21px 12px 26px 19px;
+  
 `;
 
 export const InputMessage = styled.input`
@@ -126,6 +130,19 @@ export const InputMessage = styled.input`
   padding: 10px;
   box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.15);
   border-radius: 16px;
+  
+  @media(min-width: 1279px){
+    width: 100%;
+  }
 `;
+
+export const ButtonMessage = styled.button`
+  height: 41px;
+  padding: 5px 10px;
+  background-color: var(--primary);
+  margin-left: 5px;
+  border-radius: 4px;
+  color: var(--white);
+`
 
 export const ModalProfile = styled(Modal)``;

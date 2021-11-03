@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {
     AreaInputMessage,
-    Avatar,
+    Avatar, ButtonMessage,
     ChatHeader,
     Container,
     Content,
@@ -45,15 +45,6 @@ const Conversation: React.FC<Props> = ({close}) => {
                             <HeaderStatus>Estudante</HeaderStatus>
                         </div>
                     </FlexCenter>
-
-                    <HeaderButton onClick={() => setModalProfile(true)}>
-                        VER PERFIL
-                        <ArrowForwardIosOutlinedIcon
-                            style={{marginLeft: 10}}
-                            htmlColor={"var(--primary)"}
-                            fontSize={"small"}
-                        />
-                    </HeaderButton>
                 </ChatHeader>
                 {/*<Input label={"Buscar nesta conversa"}/>*/}
 
@@ -91,6 +82,7 @@ const Conversation: React.FC<Props> = ({close}) => {
 
             <AreaInputMessage>
                 <InputMessage/>
+                <ButtonMessage>Enviar</ButtonMessage>
             </AreaInputMessage>
 
             <ModalProfile

@@ -74,6 +74,12 @@ export default createGlobalStyle`
     
     --white: #FFF;
     --black: #000;
+
+    --red-dark: #D50000;
+
+    --yellow-dark: #FFD500;
+
+    --green-dark: #5DCC77;
     
     @media(max-width:  1280px){
       --container: 608px;
