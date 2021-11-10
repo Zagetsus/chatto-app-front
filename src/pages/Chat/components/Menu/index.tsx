@@ -54,6 +54,7 @@ const Menu: React.FC = () => {
                 {/*    <EmptyContact/>*/}
                 {/*</Empty>*/}
             </Content>
+
             <ModalAdd
                 open={open}
                 onClose={() => setOpen(false)}

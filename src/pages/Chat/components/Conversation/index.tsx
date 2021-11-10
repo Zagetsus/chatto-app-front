@@ -6,12 +6,10 @@ import {
     Container,
     Content,
     FlexCenter,
-    HeaderButton,
     HeaderName, HeaderPage,
     HeaderStatus, InputMessage,
     MessageContainer, ModalProfile
 } from "./styles";
-import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
 import HeaderMobile from "../../../../components/HeaderMobile";
 import Message from "../../../../components/Message";
 import {Slide} from "@mui/material";
@@ -23,16 +21,33 @@ interface Props {
 
 const Conversation: React.FC<Props> = ({close}) => {
     const [modalProfile, setModalProfile] = useState(false);
-    const messagesEndRef = useRef<any>(null)
+    const [match, setMatch] = useState<number>(0);
+
+    const messageRef = useRef<any>(null)
 
     const scrollToBottom = () => {
-        messagesEndRef.current.scrollIntoView({behavior: "smooth"})
+        messageRef.current.scrollTop = messageRef.current.scrollHeight;
+
     }
 
     useEffect(scrollToBottom, []);
 
+    useEffect(() => {
+        function changeMatch() {
+            setMatch(window.innerHeight);
+        }
+
+        changeMatch();
+
+        window.addEventListener('resize', changeMatch);
+        return () => {
+            window.removeEventListener('resize', changeMatch);
+        };
+    }, []);
+
+
     return (
-        <Container>
+        <Container height={match}>
             <HeaderPage>
                 <HeaderMobile close={close}/>
             </HeaderPage>
@@ -47,8 +62,10 @@ const Conversation: React.FC<Props> = ({close}) => {
                     </FlexCenter>
                 </ChatHeader>
                 {/*<Input label={"Buscar nesta conversa"}/>*/}
+            </Content>
 
-                <MessageContainer>
+            <MessageContainer ref={messageRef}>
+                <Content>
                     <Message
                         hours={"10:55"}
                         message={"Olá, meu nome é Natália, estou interessada no anúncio de venda do carro. Com quem eu falo?"}
@@ -76,9 +93,9 @@ const Conversation: React.FC<Props> = ({close}) => {
                         hours={"11:15"}
                         message={"Vamos agendar."}
                     />
-                    <div ref={messagesEndRef}/>
-                </MessageContainer>
-            </Content>
+                </Content>
+            </MessageContainer>
+
 
             <AreaInputMessage>
                 <InputMessage/>

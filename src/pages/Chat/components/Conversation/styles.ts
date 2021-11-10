@@ -1,14 +1,19 @@
 import styled from "styled-components";
 import { Modal } from "@mui/material";
-let intFrameHeight = window.innerHeight;
 
-export const Container = styled.div`
+interface Props {
+    height: number
+}
+
+export const Container = styled.div<Props>`
   display: flex;
   flex-direction: column;
-  height: ${intFrameHeight + "px"};
+  height: ${({height}) => `${height}px`};
   top: 0;
-  @media(max-width:1279px){
-    background-color:white;
+  background-color: #ffffff;
+  
+  @media(min-width:1279px){
+    height: ${({height}) => `${height - 73}px`};
   }
 `;
 
@@ -48,7 +53,6 @@ export const ChatHeader = styled.div`
     box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.05),
       inset 1px 2px 2px rgba(0, 0, 0, 0.01);
     border-radius: 4px;
-    margin-bottom: 58px;
   }
 `;
 
@@ -105,6 +109,24 @@ export const MessageContainer = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
+  
+  @media(min-width: 1279px){
+    &::-webkit-scrollbar {
+      display: initial;
+      width: 5px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #888;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
 `;
 
 export const AreaInputMessage = styled.div`
@@ -118,6 +140,10 @@ export const AreaInputMessage = styled.div`
     inset 1px 2px 2px rgba(0, 0, 0, 0.1);
   border-radius: 16px 16px 0 0;
   padding: 21px 12px 26px 19px;
+  
+  @media(min-width: 1279px){
+    padding: 26px 52px 36px 32px;
+  }
   
 `;
 
@@ -138,11 +164,12 @@ export const InputMessage = styled.input`
 
 export const ButtonMessage = styled.button`
   height: 41px;
-  padding: 5px 10px;
   background-color: var(--primary);
-  margin-left: 5px;
-  border-radius: 4px;
+  margin-left: 32px;
+  border-radius: 8px;
   color: var(--white);
+  padding: 6px 26px;
+  cursor: pointer;
 `
 
 export const ModalProfile = styled(Modal)``;

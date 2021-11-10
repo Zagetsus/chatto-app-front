@@ -4,7 +4,6 @@ import {
     ButtonContainer,
     Container,
     Content,
-    ForgotPassword,
     Form,
     InputContainer,
     LogoContainer,
@@ -20,7 +19,7 @@ import {useToast} from "../../hooks/useToast";
 import {useAuth} from "../../hooks/useAuth";
 
 const Login: React.FC = () => {
-    const {form, error, onChange, setError, validateForm, onBlur} = useForm({
+    const {form, error, onChange, validateForm, onBlur} = useForm({
         username: {
             type: 'username',
             required: true,

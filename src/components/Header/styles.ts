@@ -18,7 +18,12 @@ export const Container = styled.div`
   box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.05),
     inset 0px 2px 2px rgba(0, 0, 0, 0.01);
   display: flex;
-  padding: 30px;
+  padding: 0 30px;
+  z-index: 10;
+  position: fixed;
+  top: 0;
+  left: 0;
+  
   @media (max-width: 1278px) {
     display: none;
   }

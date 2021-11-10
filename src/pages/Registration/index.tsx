@@ -22,7 +22,6 @@ import useForm from "../../hooks/useForm";
 import {api} from "../../services/api";
 import {useToast} from "../../hooks/useToast";
 import {handleErrors} from "../../helpers/utils";
-import {useNavigate} from "react-router-dom";
 import {useAuth} from "../../hooks/useAuth";
 
 const Registration: React.FC = () => {
@@ -50,7 +49,6 @@ const Registration: React.FC = () => {
     });
 
     const {toast} = useToast();
-    const navigate = useNavigate();
     const { signIn } = useAuth();
 
     const handleSubmit = useCallback(async (e) => {

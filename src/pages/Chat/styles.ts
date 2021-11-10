@@ -6,7 +6,6 @@ export const Container = styled.section`
 
 export const MenuContainer = styled.div`
   width: 100%;
-  height: 100vh;
 
   @media (min-width: 1279px) {
     max-width: 403px;

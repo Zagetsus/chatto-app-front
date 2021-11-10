@@ -50,6 +50,11 @@ export const ModalAdd = styled(Modal)`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  
+  @media(min-width: 607px){
+    align-items: center;
+    justify-content: center;
+  }
 `
 
 export const ModalContent = styled.div`
@@ -59,6 +64,12 @@ export const ModalContent = styled.div`
   border-radius: 24px 24px 0 0;
   padding: 69px 35px 0;
   outline: none;
+
+
+  @media(min-width: 607px){
+    width: 375px;
+    border-radius: 24px;
+  }
 `
 
 export const ModalTitle = styled.h2`
