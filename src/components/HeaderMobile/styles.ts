@@ -8,6 +8,10 @@ export const Container = styled.div`
   min-height: 50px;
   background: #FFFFFF;
   box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.05), inset 0px 2px 2px rgba(0, 0, 0, 0.01);
+  
+  @media(min-width: 607px){
+    display: none;
+  }
 `;
 
 export const Content = styled.div`

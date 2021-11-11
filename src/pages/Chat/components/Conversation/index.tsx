@@ -1,19 +1,17 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {
     AreaInputMessage,
-    Avatar, ButtonMessage,
-    ChatHeader,
+    ButtonMessage,
     Container,
     Content,
-    FlexCenter,
-    HeaderName, HeaderPage,
-    HeaderStatus, InputMessage,
-    MessageContainer, ModalProfile
+    InputMessage,
+    MessageContainer
 } from "./styles";
 import HeaderMobile from "../../../../components/HeaderMobile";
 import Message from "../../../../components/Message";
-import {Slide} from "@mui/material";
-import FriendProfile from "../FriendProfile";
+import ChatHeader from '../../../../components/ChatHeader';
+import ModalProfile from '../../../../components/Modals/ModalProfile';
+import useWindowDimensions from "../../../../hooks/useWindowDimensions";
 
 interface Props {
     close?: () => void;
@@ -21,9 +19,10 @@ interface Props {
 
 const Conversation: React.FC<Props> = ({close}) => {
     const [modalProfile, setModalProfile] = useState(false);
-    const [match, setMatch] = useState<number>(0);
 
-    const messageRef = useRef<any>(null)
+    const messageRef = useRef<any>(null);
+
+    const { height } = useWindowDimensions();
 
     const scrollToBottom = () => {
         messageRef.current.scrollTop = messageRef.current.scrollHeight;
@@ -32,36 +31,12 @@ const Conversation: React.FC<Props> = ({close}) => {
 
     useEffect(scrollToBottom, []);
 
-    useEffect(() => {
-        function changeMatch() {
-            setMatch(window.innerHeight);
-        }
-
-        changeMatch();
-
-        window.addEventListener('resize', changeMatch);
-        return () => {
-            window.removeEventListener('resize', changeMatch);
-        };
-    }, []);
-
 
     return (
-        <Container height={match}>
-            <HeaderPage>
-                <HeaderMobile close={close}/>
-            </HeaderPage>
+        <Container height={height}>
+            <HeaderMobile close={close}/>
             <Content>
-                <ChatHeader>
-                    <FlexCenter>
-                        <Avatar/>
-                        <div>
-                            <HeaderName>Natália</HeaderName>
-                            <HeaderStatus>Estudante</HeaderStatus>
-                        </div>
-                    </FlexCenter>
-                </ChatHeader>
-                {/*<Input label={"Buscar nesta conversa"}/>*/}
+                <ChatHeader name={"Natália"} status={"Estudante"}/>
             </Content>
 
             <MessageContainer ref={messageRef}>
@@ -102,18 +77,7 @@ const Conversation: React.FC<Props> = ({close}) => {
                 <ButtonMessage>Enviar</ButtonMessage>
             </AreaInputMessage>
 
-            <ModalProfile
-                onClose={() => setModalProfile(false)}
-                aria-labelledby="child-modal-title"
-                aria-describedby="child-modal-description"
-                open={modalProfile}
-            >
-                <Slide>
-                    <>
-                        <FriendProfile close={() => setModalProfile(false)}/>
-                    </>
-                </Slide>
-            </ModalProfile>
+            <ModalProfile open={modalProfile} setOpen={setModalProfile}/>
         </Container>
     );
 };

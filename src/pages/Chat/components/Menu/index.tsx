@@ -1,22 +1,18 @@
 import React, {useState} from 'react';
 import {
-    ButtonModal,
     Container,
     Content,
     MessageContainer,
-    ModalAdd,
-    ModalContent, ModalMessage,
-    ModalTitle,
     StoryContainer,
     Subtitle,
     Title
 } from "./styles";
 import Input from "../../../../components/Input";
 import Avatar from "../../../../components/Avatar";
-import {Slide} from "@mui/material";
 import ConversationCard from "../../../../components/ConversationCard";
-import Conversation from "../Conversation";
 import useMedia from "../../../../hooks/useMedia";
+import ModalAddFriends from "../../../../components/Modals/ModalAddFriends";
+import ModalConversation from "../../../../components/Modals/ModalConversation";
 
 const Menu: React.FC = () => {
     const [open, setOpen] = useState(false)
@@ -27,7 +23,6 @@ const Menu: React.FC = () => {
         if(mobile) {
             setMessageModal(!messageModal)
         }
-        console.log("entrou")
     }
     return (
         <Container>
@@ -55,31 +50,9 @@ const Menu: React.FC = () => {
                 {/*</Empty>*/}
             </Content>
 
-            <ModalAdd
-                open={open}
-                onClose={() => setOpen(false)}
-            >
-                <Slide in={open} direction="up">
-                    <ModalContent>
-                        <ModalTitle>Adicione um contato</ModalTitle>
+            <ModalAddFriends open={open} setOpen={setOpen} />
 
-                        <Input description="Digite o nome de usuário ou e-mail do contato" label="ID do contato"/>
-
-                        <ButtonModal expand>Adicionar aos meus contatos</ButtonModal>
-                    </ModalContent>
-                </Slide>
-            </ModalAdd>
-
-            <ModalMessage
-                open={messageModal}
-                onClose={() => setMessageModal(false)}
-            >
-                <Slide in={messageModal} direction={"left"}>
-                    <div>
-                        <Conversation close={() => setMessageModal(false)}/>
-                    </div>
-                </Slide>
-            </ModalMessage>
+            <ModalConversation open={messageModal} setOpen={setMessageModal}/>
         </Container>
     );
 };
