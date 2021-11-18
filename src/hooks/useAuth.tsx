@@ -3,6 +3,7 @@ import { api } from '../services/api';
 import { Form } from './useForm';
 import {useToast} from "./useToast";
 import {useNavigate} from "react-router-dom";
+import secure from "../config/segureLS";
 
 export const AuthContext = createContext<any>({} as any);
 
@@ -10,29 +11,64 @@ interface OwnProps {
     children?: React.ReactNode;
 }
 
+interface IUser {
+    name: string;
+    email: string;
+    username: string;
+    image: string;
+}
+
+interface IData {
+    access_token: string;
+    user: IUser;
+}
+
 export const AuthProvider: React.FC<OwnProps> = ({ children }): JSX.Element => {
-    const [user, setUser] = useState<any>();
+    const getToken = () => {
+        const token = secure.get('chatto@access-token')
+
+        return token?.data
+    }
+    const getUser = () => {
+        const user = secure.get('chatto@user')
+
+        return user?.data
+    }
+
+    const [token, setToken] = useState(getToken());
+    const [user, setUser] = useState<IUser>(getUser());
 
     const navigate = useNavigate();
     const { toast } = useToast();
 
-    const saveUser = (user: unknown) => {
+    const saveToken = (userToken: string) => {
+        secure.set('chatto@access-token', {data: userToken})
+        setToken(userToken);
+    };
+
+    const saveUser = (user: IUser) => {
+        secure.set('chatto@user', {data: user})
         setUser(user);
     };
 
+    const logOut = async () => {
+        secure.clear()
+    }
+
     const signIn = async (form: Form) => {
         try {
-            const response = await api.post('/auth/login', form);
+            const response = await api.post<IData>('/auth/login', form);
 
             if (!response) {
                 return;
             }
 
             const {
-                data,
+                data: { access_token, user },
             } = response;
 
-            saveUser(data);
+            saveToken( access_token )
+            saveUser( user );
 
             navigate('/chat');
 
@@ -58,8 +94,12 @@ export const AuthProvider: React.FC<OwnProps> = ({ children }): JSX.Element => {
     return (
         <AuthContext.Provider
             value={{
+                token,
+                setToken: saveToken,
                 user,
                 setUser: saveUser,
+                getUser,
+                logOut,
                 signIn,
             }}
         >

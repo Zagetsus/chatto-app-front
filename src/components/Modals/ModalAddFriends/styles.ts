@@ -13,7 +13,7 @@ export const ModalAdd = styled(Modal)`
   }
 `
 
-export const ModalContent = styled.div`
+export const ModalContent = styled.form`
   background: var(--white);
   height: 350px;
   box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.1);
