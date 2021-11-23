@@ -4,12 +4,14 @@ import Conversation from "../../../pages/Chat/components/Conversation";
 
 
 interface Props {
+    username: string;
     open: boolean;
     setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    setProfile: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 
-const ModalConversation: React.FC<Props> = ({open, setOpen}) => {
+const ModalConversation: React.FC<Props> = ({username, open, setOpen, setProfile}) => {
     return (
         <Modal
             open={open}
@@ -17,7 +19,7 @@ const ModalConversation: React.FC<Props> = ({open, setOpen}) => {
         >
             <Slide in={open} direction={"left"}>
                 <div>
-                    <Conversation close={() => setOpen(false)}/>
+                    <Conversation username={username} setProfile={setProfile} close={() => setOpen(false)}/>
                 </div>
             </Slide>
         </Modal>

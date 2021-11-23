@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
     Container,
     Content,
@@ -10,20 +10,17 @@ import {
 import Input from "../../../../components/Input";
 import Avatar from "../../../../components/Avatar";
 import ConversationCard from "../../../../components/ConversationCard";
-import useMedia from "../../../../hooks/useMedia";
 import ModalAddFriends from "../../../../components/Modals/ModalAddFriends";
-import ModalConversation from "../../../../components/Modals/ModalConversation";
+import {IFriends} from "../../../../interfaces/friends";
 
-const Menu: React.FC = () => {
+interface Props {
+    friends: IFriends[];
+    handleMessage: any;
+}
+
+const Menu: React.FC<Props> = ({friends, handleMessage}) => {
     const [open, setOpen] = useState(false)
-    const [messageModal, setMessageModal] = useState(false)
-    const mobile = useMedia("(max-width: 1279px");
 
-    const handleMessage = () => {
-        if(mobile) {
-            setMessageModal(!messageModal)
-        }
-    }
     return (
         <Container>
             <Content>
@@ -33,7 +30,13 @@ const Menu: React.FC = () => {
 
                 <StoryContainer>
                     <Avatar click={() => setOpen(true)} title="+ Adicionar contato" add/>
-                    <Avatar click={() => setOpen(true)} title="Natália"/>
+
+                    {
+                        friends.map((item, key) =>
+                            <Avatar key={key} click={() => handleMessage(item.username)} title={item.name}/>
+                        )
+                    }
+
                 </StoryContainer>
 
                 <Subtitle>Recentes</Subtitle>
@@ -50,9 +53,7 @@ const Menu: React.FC = () => {
                 {/*</Empty>*/}
             </Content>
 
-            <ModalAddFriends open={open} setOpen={setOpen} />
-
-            <ModalConversation open={messageModal} setOpen={setMessageModal}/>
+            <ModalAddFriends open={open} setOpen={setOpen}/>
         </Container>
     );
 };

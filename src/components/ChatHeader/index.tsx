@@ -1,12 +1,14 @@
 import React from 'react';
-import {Container, Avatar, FlexCenter, HeaderName, HeaderStatus} from "./styles";
+import {Container, Avatar, FlexCenter, HeaderName, HeaderStatus, HeaderButton} from "./styles";
 
 interface Props {
     name: string;
     status: string;
+
+    setProfile: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const ChatHeader: React.FC<Props> = ({name, status}) => {
+const ChatHeader: React.FC<Props> = ({name, status, setProfile}) => {
   return (
       <Container>
           <FlexCenter>
@@ -16,6 +18,9 @@ const ChatHeader: React.FC<Props> = ({name, status}) => {
                   <HeaderStatus>{status}</HeaderStatus>
               </div>
           </FlexCenter>
+          <HeaderButton onClick={() => setProfile(true)}>
+              VER PERFIL
+          </HeaderButton>
       </Container>
   );
 };

@@ -1,83 +1,119 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {
     AreaInputMessage,
     ButtonMessage,
     Container,
-    Content,
+    Content, Empty,
     InputMessage,
     MessageContainer
 } from "./styles";
 import HeaderMobile from "../../../../components/HeaderMobile";
 import Message from "../../../../components/Message";
 import ChatHeader from '../../../../components/ChatHeader';
-import ModalProfile from '../../../../components/Modals/ModalProfile';
 import useWindowDimensions from "../../../../hooks/useWindowDimensions";
+import {api} from "../../../../services/api";
+import {useToast} from "../../../../hooks/useToast";
 
 interface Props {
     close?: () => void;
+    username: string;
+    setProfile: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Conversation: React.FC<Props> = ({close}) => {
-    const [modalProfile, setModalProfile] = useState(false);
-
+const Conversation: React.FC<Props> = ({close, username, setProfile}) => {
+    const [info, setInfo] = useState<any>();
+    const [messageValue, setMessageValue] = useState('');
     const messageRef = useRef<any>(null);
 
-    const { height } = useWindowDimensions();
+    const {height} = useWindowDimensions();
+    const {toast} = useToast();
+
+    const getMessages = useCallback(async () => {
+        try {
+            const {data} = await api.get(`messages/${username}`);
+            setInfo(data)
+        } catch (e) {
+            toast({
+                type: 'error',
+                description: 'Ocorreu um erro inesperado!'
+            })
+        }
+    }, [toast, username]);
+
+    const setMessage = useCallback(async (e) => {
+        try {
+            e.preventDefault()
+            await api.post('messages', {
+                to_id: info.id,
+                body: messageValue,
+            });
+
+            setMessageValue('');
+        } catch (e) {
+
+        }
+    }, [info, messageValue]);
 
     const scrollToBottom = () => {
         messageRef.current.scrollTop = messageRef.current.scrollHeight;
 
     }
 
-    useEffect(scrollToBottom, []);
+    useEffect(() => {
+        if (!info) return;
+        scrollToBottom()
 
+    }, [info]);
+
+    useEffect(() => {
+        if (!username) return;
+
+        getMessages().then()
+
+        // eslint-disable-next-line
+    }, [username]);
 
     return (
         <Container height={height}>
             <HeaderMobile close={close}/>
-            <Content>
-                <ChatHeader name={"Natália"} status={"Estudante"}/>
-            </Content>
-
-            <MessageContainer ref={messageRef}>
+            {
+                info &&
                 <Content>
-                    <Message
-                        hours={"10:55"}
-                        message={"Olá, meu nome é Natália, estou interessada no anúncio de venda do carro. Com quem eu falo?"}
-                    />
-                    <Message
-                        hours={"11:00"}
-                        message={"Boa tarde, você viu o anúncio no site da Webmotors?"}
-                        owner
-                    />
-                    <Message
-                        hours={"11:10"}
-                        message={"Sim, lá mesmo."}
-                    />
-                    <Message
-                        hours={"11:11"}
-                        message={"Quero saber se a documentação está regularizada."}
-                    />
-                    <Message
-                        hours={"11:11"}
-                        message={"Está sim, sem multas, IPVA pago e sem danos. Quer agendar para ver o veículo?."}
-                        owner
-                    />
-
-                    <Message
-                        hours={"11:15"}
-                        message={"Vamos agendar."}
-                    />
+                    <ChatHeader name={info.name} status={"Estudante"} setProfile={setProfile}/>
                 </Content>
-            </MessageContainer>
+            }
+
+            {
+                info &&
+                <MessageContainer ref={messageRef}>
+                    <Content>
+                        {info.messages.map((item: any, key: number) => (
+                            <Message
+                                key={key}
+                                hours={item.hours}
+                                message={item.body}
+                                owner={item.owner}
+                            />
+                        ))
+                        }
+                    </Content>
+                </MessageContainer>
+            }
+
+            {
+                !info &&
+                <Empty>
+                    <p>Selecione um contato para começar a conversar.</p>
+                </Empty>
+            }
 
 
-            <AreaInputMessage>
-                <InputMessage/>
-                <ButtonMessage>Enviar</ButtonMessage>
+            <AreaInputMessage onSubmit={setMessage}>
+                <InputMessage disabled={!username} value={messageValue}
+                              onChange={(e) => setMessageValue(e.target.value)}/>
+                <ButtonMessage disabled={!messageValue || !username} type={'submit'}>Enviar</ButtonMessage>
             </AreaInputMessage>
 
-            <ModalProfile open={modalProfile} setOpen={setModalProfile}/>
         </Container>
     );
 };

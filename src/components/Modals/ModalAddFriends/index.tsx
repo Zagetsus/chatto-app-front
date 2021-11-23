@@ -21,8 +21,8 @@ const ModalAddFriends: React.FC<Props> = ({open, setOpen}) => {
         }
     })
 
-    const { user } = useAuth();
-    const { toast } = useToast();
+    const {user} = useAuth();
+    const {toast} = useToast();
 
     const handleSubmit = useCallback(async (e) => {
         try {
@@ -42,12 +42,9 @@ const ModalAddFriends: React.FC<Props> = ({open, setOpen}) => {
                 description: "Usuário adicionado com sucesso!"
             })
         } catch (e: any) {
-            if (e.response) {
-                console.log(e.response.data)
-                setError(handleErrors(e.response.data, error));
-            }
+            setError(handleErrors(e, error));
         }
-    }, [error, form.username, setError, setOpen, toast, user._id, validateForm]);
+    }, [error, form.username, setError, setOpen, toast, user, validateForm]);
 
     return (
         <ModalAdd

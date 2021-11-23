@@ -6,6 +6,29 @@ export const Container = styled.div`
   background: #fff;
   padding: 65px 20px;
   overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  @media(min-width: 1279px) {
+    &::-webkit-scrollbar {
+      display: initial;
+      width: 5px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #888;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+  }
 `;
 
 export const ButtonBack = styled.button`

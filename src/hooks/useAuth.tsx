@@ -75,10 +75,10 @@ export const AuthProvider: React.FC<OwnProps> = ({ children }): JSX.Element => {
             return true;
 
         } catch (e: any) {
-           if (e.response && e.response.data.type === "toast"){
+           if (e.type === "toast"){
                toast({
                    type: 'error',
-                   description: e.response.data.message
+                   description: e.message
                })
 
                return;

@@ -9,6 +9,7 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   cursor: pointer;
+  margin-right: 12px;
 `;
 
 export const AvatarContainer = styled.div<Props>`

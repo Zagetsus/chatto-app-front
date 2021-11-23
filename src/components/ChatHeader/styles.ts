@@ -59,4 +59,6 @@ export const HeaderButton = styled.button`
 
   color: #09101d;
   opacity: 0.8;
+  
+  cursor: pointer;
 `;

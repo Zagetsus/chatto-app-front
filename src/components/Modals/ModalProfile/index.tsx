@@ -4,10 +4,11 @@ import FriendProfile from "../../../pages/Chat/components/FriendProfile";
 
 interface Props {
     open: boolean;
+    username: string;
     setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const ModalProfile: React.FC<Props> = ({open, setOpen}) => {
+const ModalProfile: React.FC<Props> = ({open, setOpen, username}) => {
 
   return (
       <Modal
@@ -17,7 +18,7 @@ const ModalProfile: React.FC<Props> = ({open, setOpen}) => {
           open={open}
       >
           <>
-              <FriendProfile close={() => setOpen(false)}/>
+              <FriendProfile username={username} close={() => setOpen(false)}/>
           </>
       </Modal>
   );

@@ -38,12 +38,12 @@ export const MessageContainer = styled.div`
     display: none;
   }
   
-  @media(min-width: 1279px){
+  @media(min-width: 1279px) {
     &::-webkit-scrollbar {
       display: initial;
       width: 5px;
     }
-    
+
     ::-webkit-scrollbar-track {
       background: #f1f1f1;
     }
@@ -55,9 +55,22 @@ export const MessageContainer = styled.div`
     ::-webkit-scrollbar-thumb:hover {
       background: #555;
     }
+  }
 `;
 
-export const AreaInputMessage = styled.div`
+export const Empty = styled.div`
+  display: none;
+  align-items: center;
+  justify-content: center;
+  
+  height: 100%;
+  
+  @media(min-width: 1279px){
+    display: flex;
+  }
+`;
+
+export const AreaInputMessage = styled.form`
   display: flex;
   align-items: center;
   
@@ -98,4 +111,9 @@ export const ButtonMessage = styled.button`
   color: var(--white);
   padding: 6px 26px;
   cursor: pointer;
+  
+  &:disabled {
+    background: #B6B7BD;
+    cursor: default;
+  }
 `

@@ -49,7 +49,7 @@ const Registration: React.FC = () => {
     });
 
     const {toast} = useToast();
-    const { signIn } = useAuth();
+    const {signIn} = useAuth();
 
     const handleSubmit = useCallback(async (e) => {
         try {
@@ -92,9 +92,7 @@ const Registration: React.FC = () => {
             signIn({username, password})
 
         } catch (e: any) {
-            if (e.response) {
-                setError(handleErrors(e.response.data, error));
-            }
+            setError(handleErrors(e, error));
         }
     }, [error, form, setError, signIn, toast, validateForm]);
 
